@@ -17,5 +17,12 @@
         "psr-4": {
             "Aromn\\Musicbrainz\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aromn\\Musicbrainz\\MusicbrainzServiceProvider"
+            ]
+        }
     }
 }
