@@ -10,6 +10,13 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class MusicbrainzController extends Controller
 {
+
+	public static function ddown()
+	{
+		$data = Musicbrainz::searchArtist("Nirvana", "group");
+		return view('muzicbrains::test', ["data" => $data]);
+	}
+
 	public function searchArtist(string $artist, string $type = "", string $country = "")
 	{
 		return Musicbrainz::searchArtist($artist, $type, $country);
