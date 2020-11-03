@@ -78,6 +78,14 @@ class Musicbrainz
 			exit();
 		}
 
+		/*	MBID lenght is 36 according to Musicbrainz Documentation: https://musicbrainz.org/doc/MusicBrainz_Identifier */
+		/*	More validations can be added to test MBID */
+		if (!$mbid || strlen($mbid) != 36) {
+			return response()->json([
+					'error' => 'No MBID was provided or the provided MBID is not in the correct format.'
+				], 500);
+		}
+
 		$client = new Client();
 
 		$uri = 'http://musicbrainz.org/ws/2/' . $entity . '/';
