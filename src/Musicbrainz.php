@@ -74,8 +74,9 @@ class Musicbrainz
 	public static function lookup(string $entity, string $mbid, $inc)
 	{
 		if (!self::_validEntity($entity)) {
-			echo "Not valid entity. Please use one of the followings: artist, label or event";
-			exit();
+			return response()->json([
+					'error' => 'Not valid entity. Please use one of the followings: artist, label or event.'
+				], 500);
 		}
 
 		/*	MBID lenght is 36 according to Musicbrainz Documentation: https://musicbrainz.org/doc/MusicBrainz_Identifier */
@@ -110,7 +111,7 @@ class Musicbrainz
 			$data = $res->getBody();
 			$json_array = json_decode($data, true);
 
-			print_r($json_array);
+			return $data;
 				//print_r(json_decode($data, true));
 				
 		} catch (GuzzleException $e) {
