@@ -127,7 +127,7 @@ class Musicbrainz
 		return "TEST";
 	}
 
-	public static function searchArtist($artist, $type, $country)
+	public static function searchArtist($artist, $type = "", $country = "")
     {
     	$uri = 'http://musicbrainz.org/ws/2/artist/?query=artist:';
     	$client = new Client();
@@ -165,6 +165,10 @@ class Musicbrainz
 				
 			$data = $res->getBody();
 			$json_array = json_decode($data, true);
+
+			// This return is to test the dropdown at test.blade.php view
+			return $json_array['artists'];
+
 			
 			foreach ($json_array['artists'] as $art) {
 				if ($art['name'] == $artist) {
