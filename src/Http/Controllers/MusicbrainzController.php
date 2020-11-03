@@ -26,4 +26,9 @@ class MusicbrainzController extends Controller
 	{
 		return Musicbrainz::searchLabel($query);
 	}
+
+	public static function lookup($entity, $mbdi, $inc = "")
+	{
+		return Musicbrainz::lookup($entity, $mbdi, $inc);
+	}
 }
