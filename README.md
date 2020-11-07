@@ -21,12 +21,14 @@
     ```
     Create the functions and add the parameters to them, the parameters expected for the functions are:
   
+    ```
     **browse(string $entity, string $included_entity, string $query)**
     **lookup(string $entity, string $mbid, $inc)**
     **searchArtist($artist, $type = "", $country = "")**
     **searchEvent(string $query)**
     **searchLabel(string $mbid)**
-    
+    ```
+
     For example:
     
     ```
