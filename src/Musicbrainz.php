@@ -251,14 +251,6 @@ class Musicbrainz
 			]);
 					
 			$data = $res->getBody();
-			$json_array = json_decode($data, true);
-			
-			foreach ($json_array['labels'] as $label) {
-				if ($label['name'] == $query) {
-				 	return $label['id'];
-				 } 
-			}
-				//print_r(json_decode($data, true));
 				
 		} catch (GuzzleException $e) {
 			return response()->json([
