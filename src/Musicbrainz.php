@@ -219,20 +219,29 @@ class Musicbrainz
 		}
 	}
 
-	public static function searchLabel(string $query)
+	public static function searchLabel(string $mbid)
 	{
+		
+		/*	MBID lenght is 36 according to Musicbrainz Documentation: https://musicbrainz.org/doc/MusicBrainz_Identifier */
+		/*	More validations can be added to test MBID */
+		if (!$mbid || strlen($mbid) != 36) {
+			return response()->json([
+					'error' => 'No MBID was provided or the provided MBID is not in the correct format.'
+				], 500);
+		}
+
 		$client = new Client();
 
-		$uri = 'http://musicbrainz.org/ws/2/label/?query="';
+		$uri = 'http://musicbrainz.org/ws/2/label/';
 
 		try {
 
-			if (!$query || $query == "") {
+			if (!$mbid || $mbid == "") {
 				return response()->json([
 					'error' => 'The given parameters do not match any available query type for the label resource.'
 				], 500);
 			}
-			$uri = $uri . $query;
+			$uri = $uri . $mbid;
 			$res =  $client->request('GET', $uri, [
 				'headers' => [
 					'x-qm-key' => 'My API key',
