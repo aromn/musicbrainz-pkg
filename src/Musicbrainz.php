@@ -250,7 +250,7 @@ class Musicbrainz
 				]
 			]);
 					
-			$data = $res->getBody();
+			return $data = $res->getBody();
 				
 		} catch (GuzzleException $e) {
 			return response()->json([
